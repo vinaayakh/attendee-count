@@ -1,0 +1,46 @@
+.counter {
+    font-family: "Montserrat";
+    margin:0;
+    padding:0;
+    max-width: 310px;
+
+    .wrapper{
+        border:1px solid #DEDEDE;
+        border-radius: 10px;
+        padding:5px;
+
+        text-align: right;
+
+        img, .right{
+            display: inline-block;
+        }
+
+        .right{
+            text-align: center;
+            width: 70%;
+
+            h1{
+                font-size: 3em;
+                margin: 18px 0 0 0;
+            }
+
+            h4{
+                text-transform: uppercase;
+                color: #F59220;
+                margin-top: 6px;
+            }
+        }
+
+        .bottom{
+            color: #626262;
+            text-align: right;
+            font-size: 10px;
+            font-weight: 600;
+            
+            p{
+                margin-right: 5px;
+            }
+        }
+    }
+
+}

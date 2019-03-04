@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+@mixin font-face($name, $src, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+    
+    @font-face {
+        font-family: $name;
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+@include font-face("Montserrat", "fonts/Montserrat/Montserrat");
