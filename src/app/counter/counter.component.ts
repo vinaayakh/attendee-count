@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
 
@@ -10,47 +10,51 @@ import { interval, Subscription } from 'rxjs';
 })
 export class CounterComponent implements OnInit {
 
-  counter : number = 0;
-  intervalSubscription : Subscription;
-  initSubscription : Subscription;
+  counter: number = 0;
+  intervalSubscription: Subscription;
+  initSubscription: Subscription;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {
+    const test = document.getElementsByTagName('attendee-count')[0].getAttribute('organizationId');
+    console.log(test);
+    console.log(this);
+  }
 
   ngOnInit() {
     this.initCounterValue(10055);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.intervalSubscription.unsubscribe()
   }
 
-  initCounterValue(initialCounter){
-    this.initSubscription = interval(10).subscribe(()=>{
-      if(this.counter< initialCounter){
-        this.counter = Math.floor(Math.random() * Math.pow(10,initialCounter.toString().length-1));
-      }else{
+  initCounterValue(initialCounter) {
+    this.initSubscription = interval(10).subscribe(() => {
+      if (this.counter < initialCounter) {
+        this.counter = Math.floor(Math.random() * Math.pow(10, initialCounter.toString().length - 1));
+      } else {
         this.initSubscription.unsubscribe();
       }
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       this.counter = initialCounter;
       this.initSubscription.unsubscribe();
-    },1000)
-    this.intervalSubscription = interval(10000).subscribe(time=>{
+    }, 1000)
+    this.intervalSubscription = interval(10000).subscribe(time => {
       this.updateCounter();
     });
   }
 
-  getAttendeeList(){
+  getAttendeeList() {
     const url = 'https://jsonplaceholder.typicode.com/todos/1';
     const header = new HttpHeaders();
-    this.http.get(url, { headers : header}).subscribe(response=>{
+    this.http.get(url, { headers: header }).subscribe(response => {
       console.log(response);
     })
   }
 
-  updateCounter(){
-    this.counter ++;
+  updateCounter() {
+    this.counter++;
   }
 
 }
